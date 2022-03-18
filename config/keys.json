@@ -1,0 +1,5 @@
+{
+    "PORT" :3005,
+    "SALT_ROUNDS" : 10,
+    "SECRETE_KEY" : "1my0secrete0key1"
+}
