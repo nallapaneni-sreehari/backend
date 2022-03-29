@@ -59,12 +59,12 @@ async function AddUser(user, res)
 
             if(!isUserExist)
             { 
-                var accessToken = jwt.sign(user.email="unknown@"+Math.floor(Date.now())/1000+"@gmail.com", "config.SECRETE_KEY"); 
+                var accessToken = jwt.sign(user.email="unknown@"+Math.floor(Date.now()/1000)+"@gmail.com", "config.SECRETE_KEY"); 
 
                 user.token = accessToken; user.isActive = 1; user.isDeleted = 0; user.lastLogin = Date.now();
 
                 await UserService.createUser(user, res);
-                return res.status(201).send("Ok");
+                return res.status(200).send("Ok");
             }
             else
             {
