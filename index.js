@@ -37,7 +37,7 @@ app.get('/user/:email',authenticateToken, (req,res)=>{
 
 });
 
-app.post('/trackMyProject', (req,res)=>{
+app.post('/connectionCheck', (req,res)=>{
     var ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress || null;
     req.body.ipAddress = ipAddress;
     controller.UserController.AddUser(req.body, res);
