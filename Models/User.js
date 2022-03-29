@@ -13,7 +13,8 @@ var UserSchema = new schema({
     token: String,
     isActive: Number,
     isDeleted : Number,
-    lastLogin : Date
+    lastLogin : Date,
+    ipAddress:String
 });
 
 module.exports = mongoose.model('Users', UserSchema, "Users");

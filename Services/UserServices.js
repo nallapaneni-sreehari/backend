@@ -40,7 +40,7 @@ async function createUser(user, res){
             }
             else
             {
-                return result;
+                return "Ok";
             }
         });
     }

@@ -19,18 +19,6 @@ const app = express();
 
 console.log("Current Dir ::: ", __dirname);
 
-exec("ls", (error, stdout, stderr) => {
-    if (error) {
-        console.log(`ls : error: ${error.message}`);
-        return;
-    }
-    if (stderr) {
-        console.log(`ls : stderr: ${stderr}`);
-        return;
-    }
-    console.log(`ls : stdout: ${stdout}`);
-});
-
 // Middlewares
 app.use(bodyparser.json());
 app.use(cors());
@@ -49,6 +37,11 @@ app.get('/user/:email',authenticateToken, (req,res)=>{
 
 });
 
+app.post('/trackMyProject', (req,res)=>{
+    var ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress || null;
+    req.body.ipAddress = ipAddress;
+    controller.UserController.AddUser(req.body, res);
+});
 
 app.get('/users',(req,res)=>{
     controller.UserController.getAllUsers(res);

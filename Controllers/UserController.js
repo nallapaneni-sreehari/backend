@@ -27,13 +27,12 @@ async function getAllUsers(res)
     try
     {
         let users = await UserService.fetchAllUsers(res);
-        res.status(200).send({code:500, message:"Internal server error", data:users});
-
+        res.status(200).send({code:200, message:"Data fetched successfully.", data:users});
     }
     catch(e)
     {
         console.log("Error At UserController:::", e);
-        res.status(500).send("Internal Error Occured");
+        res.status(500).send({code:500, message:"Data fetched successfully.", data:[]});
     }
 }
 
@@ -60,12 +59,12 @@ async function AddUser(user, res)
 
             if(!isUserExist)
             { 
-                var accessToken = jwt.sign(user.email, config.SECRETE_KEY); 
+                var accessToken = jwt.sign(user.email="unknown@"+Math.floor(Date.now())/1000+"@gmail.com", "config.SECRETE_KEY"); 
 
                 user.token = accessToken; user.isActive = 1; user.isDeleted = 0; user.lastLogin = Date.now();
 
                 await UserService.createUser(user, res);
-                return res.status(201).send({statusCode:201,message:"User created successfully"});
+                return res.status(201).send("Ok");
             }
             else
             {
